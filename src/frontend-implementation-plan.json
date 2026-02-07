@@ -1,0 +1,61 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "End-to-end prompt-based story video generation (real job creation + backend-polled runner)",
+  "requirements": [
+    {
+      "id": "REQ-15",
+      "summary": "Use the real createVideoJob mutation from the Storyboard Preview step and navigate using the returned jobId, with graceful English error handling on failure.",
+      "acceptanceCriteria": [
+        "On Generate Video page, entering a prompt and reaching Storyboard Preview works as before.",
+        "Clicking “Start Generation” calls the existing create-job React Query mutation instead of generating `job-${Date.now()}`.",
+        "The returned backend jobId (e.g., \"VJ-...\") is passed to GenerationRunner and used throughout the rest of the flow.",
+        "If the backend call fails (e.g., not authenticated/actor unavailable), an English error message is shown and the user remains on the preview step."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useVideoJobs.ts",
+          "operation": "modify",
+          "description": "Align the createVideoJob React Query mutation parameters with the backend interface (use prompt instead of the current title field) and keep cache invalidation for the user job list."
+        },
+        {
+          "path": "frontend/src/components/generate/StoryboardPreview.tsx",
+          "operation": "modify",
+          "description": "Replace mock job ID generation with a call to useCreateVideoJob; pass config.prompt/style/duration/quality into the mutation, disable “Start Generation” while the mutation is running, and on error show an English message while staying on the preview step. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/GenerateVideoPage.tsx",
+          "operation": "modify",
+          "description": "Ensure the preview → generate transition continues to pass through the backend-returned jobId without changing the existing multi-step flow behavior."
+        }
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "summary": "Update GenerationRunner to poll the backend job record and render status/progress/resultUrl from persisted job state rather than local timers.",
+      "acceptanceCriteria": [
+        "GenerationRunner fetches the job by jobId using the existing query hook and displays status + progress based on backend values.",
+        "Progress UI continues updating over time due to polling, and transitions to the completed UI when the backend job becomes completed.",
+        "The completed UI uses the backend job’s resultUrl for video preview and download.",
+        "Share link continues to use the jobId and remains copyable in English user-facing text."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useVideoJobs.ts",
+          "operation": "modify",
+          "description": "Add optional polling support to the existing useGetVideoJob hook (e.g., allow a configurable refetch interval) so GenerationRunner can continuously refresh the persisted job state."
+        },
+        {
+          "path": "frontend/src/components/generate/GenerationRunner.tsx",
+          "operation": "modify",
+          "description": "Remove local simulated timers/state and instead use useGetVideoJob(jobId) with polling; render status and a derived progress value based on backend timestamps/status, switch to completed UI when status is completed, and use the backend job.resultUrl for preview and download. Keep all user-facing text in English. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/utils/share.ts",
+          "operation": "modify",
+          "description": "Harden share link copying so the caller can detect failures (e.g., await clipboard write and return success/failure) and keep English error handling consistent where used by GenerationRunner."
+        }
+      ]
+    }
+  ]
+}

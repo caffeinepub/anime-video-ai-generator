@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a modern AI web app called \"Anime Video AI Generator\" that lets users generate long anime videos (up to 4K) from prompts, with style/character/voice/music options, storyboard preview, and post-generation preview/download/share, plus core marketing and account pages.",
+  "architectural_notes": [
+    "Use a dark-mode premium UI with neon purple/blue gradient accents and a clean responsive layout.",
+    "Include SEO metadata (title + description) for key pages."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-the-app-shell-with-a-responsive-layout-and-navigation-for-these-pages-routes-home-generate-video-pricing-gallery-generated-videos-login-signup-and-user-dashboard",
+      "title": "Create the app shell with a responsive layout and navigation for these pages/routes: Home, Generate Video, Pricing, Gallery (generated videos), Login/Signup, and User Dashboard.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-consistent-dark-mode-premium-ui-theme-across-the-site-using-a-neon-purple-blue-gradient-accent-with-a-clean-professional-layout-and-readable-typography",
+      "title": "Implement a consistent dark-mode premium UI theme across the site using a neon purple + blue gradient accent, with a clean professional layout and readable typography.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-generate-video-page-ui-with-a-form-that-includes-story-prompt-input-duration-selector-30-sec-1-min-3-min-5-min-10-min-20-min-quality-selector-720p-1080p-2k-4k-anime-style-selector-naruto-style-one-piece-style-demon-slayer-style-makoto-shinkai-style-studio-ghibli-style-custom-character-options-upload-character-photo-choose-from-preset-characters-generate-character-from-text-description-voice-options-male-female-language-hindi-english-japanese-and-music-options-cinematic-sad-action-romantic",
+      "title": "Build the Generate Video page UI with a form that includes: story prompt input, duration selector (30 sec, 1 min, 3 min, 5 min, 10 min, 20 min), quality selector (720p, 1080p, 2K, 4K), anime style selector (Naruto style, One Piece style, Demon Slayer style, Makoto Shinkai style, Studio Ghibli style, Custom), character options (upload character photo, choose from preset characters, generate character from text description), voice options (male/female + language Hindi/English/Japanese), and music options (Cinematic, Sad, Action, Romantic).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-storyboard-preview-step-before-final-generation-on-the-generate-video-page-the-user-must-be-able-to-preview-the-storyboard-and-then-confirm-to-start-generation",
+      "title": "Add a Storyboard Preview step before final generation on the Generate Video page. The user must be able to preview the storyboard and then confirm to start generation.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-generation-flow-ui-a-generate-button-that-starts-a-job-shows-a-progress-bar-while-generating-and-after-completion-displays-a-video-preview-plus-download-and-share-buttons",
+      "title": "Implement the generation flow UI: a Generate button that starts a job, shows a progress bar while generating, and after completion displays a video preview plus Download and Share buttons.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-connect-the-generate-video-page-to-the-backend-so-that-creating-a-job-showing-progress-and-displaying-the-final-result-uses-real-persisted-job-records-with-simulated-generation-if-no-real-ai-video-engine-is-available",
+      "title": "Connect the Generate Video page to the backend so that creating a job, showing progress, and displaying the final result uses real persisted job records (with simulated generation if no real AI video engine is available).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-login-signup-using-internet-identity-and-gate-user-specific-pages-features-generate-video-job-creation-and-user-dashboard-behind-authentication",
+      "title": "Implement Login/Signup using Internet Identity and gate user-specific pages/features (Generate Video job creation and User Dashboard) behind authentication.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-user-dashboard-page-to-show-the-authenticated-user-s-generation-history-including-status-key-settings-duration-quality-style-created-date-and-actions-for-previewing-downloading-and-copying-a-share-link-for-completed-videos",
+      "title": "Build the User Dashboard page to show the authenticated user’s generation history, including status, key settings (duration/quality/style), created date, and actions for previewing, downloading, and copying a share link for completed videos.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-gallery-page-to-display-a-curated-public-list-of-generated-videos-can-be-demo-seeded-items-initially-with-thumbnails-basic-metadata-style-duration-quality-and-ability-to-open-a-preview",
+      "title": "Build the Gallery page to display a curated/public list of generated videos (can be demo/seeded items initially) with thumbnails, basic metadata (style, duration, quality), and ability to open a preview.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-home-page-as-a-marketing-landing-page-for-anime-video-ai-generator-with-a-hero-section-primary-cta-to-generate-video-feature-highlights-prompt-storyboard-generate-and-a-section-teasing-gallery-pricing",
+      "title": "Create the Home page as a marketing landing page for “Anime Video AI Generator” with a hero section, primary CTA to Generate Video, feature highlights (prompt → storyboard → generate), and a section teasing Gallery/Pricing.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-pricing-page-with-clear-plan-cards-e-g-free-creator-studio-and-a-comparison-table-for-duration-limits-and-quality-options-including-4k-on-higher-tiers",
+      "title": "Create the Pricing page with clear plan cards (e.g., Free/Creator/Studio) and a comparison table for duration limits and quality options (including 4K on higher tiers).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-seo-friendly-metadata-set-the-html-document-title-and-meta-description-for-the-app-and-ideally-per-route-to-reflect-anime-video-ai-generator-and-its-core-offering",
+      "title": "Add SEO-friendly metadata: set the HTML document title and meta description for the app (and ideally per route) to reflect “Anime Video AI Generator” and its core offering.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-static-visual-assets-for-branding-a-site-logo-and-a-dark-neon-hero-background-illustration-and-render-them-in-the-ui-header-hero-from-frontend-static-assets-not-via-backend",
+      "title": "Add required static visual assets for branding: a site logo and a dark neon hero background/illustration, and render them in the UI (header/hero) from frontend static assets (not via backend).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-storyboard-preview-step-s-mock-job-id-creation-with-a-real-backend-job-creation-call-so-that-clicking-start-generation-creates-a-persisted-job-and-navigates-to-the-generation-step-using-the-returned-jobid",
+      "title": "Replace the Storyboard Preview step’s mock job ID creation with a real backend job creation call so that clicking “Start Generation” creates a persisted job and navigates to the generation step using the returned jobId.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-generationrunner-to-render-progress-status-result-using-the-backend-job-record-polling-via-react-query-rather-than-only-local-simulated-state-so-the-ui-reflects-the-persisted-job-lifecycle",
+      "title": "Update GenerationRunner to render progress/status/result using the backend job record (polling via React Query) rather than only local simulated state, so the UI reflects the persisted job lifecycle.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create core video generation UI: prompt input, duration selector (30s–20m), quality selector (720p–4K), anime style selector (preset styles + custom)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add character options: upload character photo, choose preset anime characters, generate character from text description",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add voice options: male/female voices and language selection (Hindi/English/Japanese)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add music options selection (Cinematic, Sad, Action, Romantic)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement storyboard preview before final generation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement generation flow: Generate button with progress bar; after generation show video preview, download button, and share button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Create site pages: Home, Generate Video, Pricing, Gallery (generated videos), Login/Signup, User Dashboard (history of videos and downloads)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Apply UI/UX requirements: dark-mode premium theme, neon purple+blue gradient, clean professional layout, mobile responsive design",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add SEO-friendly title and description metadata",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Implement backend data models and APIs to persist video generation jobs per authenticated user, including all selected options, storyboard data, job status/progress, timestamps, and result URLs/asset references.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Update the backend video job model and creation API so the user’s story prompt is persisted with the job (not just a generic title), enabling “prompt → story video” tracking across Dashboard and Gallery.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Implement a backend-driven simulated generation lifecycle for video jobs so progress/status and completion are derived from persisted job state rather than only frontend timers.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Anime Video AI Generator",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

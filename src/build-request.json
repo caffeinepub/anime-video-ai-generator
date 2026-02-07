@@ -1,0 +1,108 @@
+{
+  "kind": "build_request",
+  "title": "Make prompt-based story video generation fully functional end-to-end (backend job + progress + result)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-15",
+      "text": "Replace the Storyboard Preview step’s mock job ID creation with a real backend job creation call so that clicking “Start Generation” creates a persisted job and navigates to the generation step using the returned jobId.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Giving prompt use and generate story video"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On Generate Video page, entering a prompt and reaching Storyboard Preview works as before.",
+        "Clicking “Start Generation” calls the existing create-job React Query mutation instead of generating `job-${Date.now()}`.",
+        "The returned backend jobId (e.g., \"VJ-...\") is passed to GenerationRunner and used throughout the rest of the flow.",
+        "If the backend call fails (e.g., not authenticated/actor unavailable), an English error message is shown and the user remains on the preview step."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Update the backend video job model and creation API so the user’s story prompt is persisted with the job (not just a generic title), enabling “prompt → story video” tracking across Dashboard and Gallery.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Giving prompt use and generate story video"
+        ]
+      },
+      "acceptanceCriteria": [
+        "backend/main.mo VideoJob includes a persisted field for the user’s prompt text (e.g., `prompt : Text`).",
+        "The createVideoJob API accepts the prompt (or an explicit title derived from prompt) and stores it on the job record.",
+        "Existing authorization checks remain intact (only authenticated users can create jobs).",
+        "The frontend can display the saved prompt/title for the job in job lists/details without using placeholder text."
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Implement a backend-driven simulated generation lifecycle for video jobs so progress/status and completion are derived from persisted job state rather than only frontend timers.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Giving prompt use and generate story video"
+        ]
+      },
+      "acceptanceCriteria": [
+        "There is a backend API callable by the job owner to start generation for a job (sets status from pending to processing and records a start timestamp).",
+        "Job progress can be obtained via getVideoJob (either as a stored numeric progress value or computed from elapsed time) and moves monotonically toward 100%.",
+        "Once generation is complete, the backend job status becomes completed and includes a non-null resultUrl (may remain a demo/placeholder MP4 URL).",
+        "Admin-only completion is no longer required for the normal user flow to reach completed status (the owner can complete via the simulation logic)."
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "Update GenerationRunner to render progress/status/result using the backend job record (polling via React Query) rather than only local simulated state, so the UI reflects the persisted job lifecycle.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Giving prompt use and generate story video"
+        ]
+      },
+      "acceptanceCriteria": [
+        "GenerationRunner fetches the job by jobId using the existing query hook and displays status + progress based on backend values.",
+        "Progress UI continues updating over time due to polling, and transitions to the completed UI when the backend job becomes completed.",
+        "The completed UI uses the backend job’s resultUrl for video preview and download.",
+        "Share link continues to use the jobId and remains copyable in English user-facing text."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain single-actor (all Motoko logic in backend/main.mo).",
+    "Do not edit any files under frontend/src/components/ui or any other frontend.immutablePaths.",
+    "All user-facing text added/changed by this request must be in English.",
+    "Do not introduce external databases or third-party services; simulated generation must run within the canister + frontend polling model."
+  ],
+  "nonGoals": [
+    "Integrating a real AI video generation engine or storing large generated video assets in the canister.",
+    "Adding new authentication providers (Internet Identity only).",
+    "Adding real-time transports (no WebSockets)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

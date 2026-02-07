@@ -1,0 +1,83 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T09:11:36.796Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-15",
+        "summary": "Replace the Storyboard Preview step’s mock job ID creation with a real backend job creation call so that clicking “Start Generation” creates a persisted job and navigates to the generation step using the returned jobId.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useVideoJobs.ts",
+          "frontend/src/components/generate/StoryboardPreview.tsx",
+          "frontend/src/pages/GenerateVideoPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useVideoJobs.ts",
+          "frontend/src/components/generate/StoryboardPreview.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Update the backend video job model and creation API so the user’s story prompt is persisted with the job (not just a generic title), enabling “prompt → story video” tracking across Dashboard and Gallery.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Implement a backend-driven simulated generation lifecycle for video jobs so progress/status and completion are derived from persisted job state rather than only frontend timers.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-18",
+        "summary": "Update GenerationRunner to render progress/status/result using the backend job record (polling via React Query) rather than only local simulated state, so the UI reflects the persisted job lifecycle.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useVideoJobs.ts",
+          "frontend/src/components/generate/GenerationRunner.tsx",
+          "frontend/src/utils/share.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useVideoJobs.ts",
+          "frontend/src/components/generate/GenerationRunner.tsx",
+          "frontend/src/utils/share.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/dashboard/JobDetailModal.tsx",
+    "frontend/src/components/dashboard/JobHistoryList.tsx",
+    "frontend/src/components/gallery/GalleryGrid.tsx",
+    "frontend/src/components/gallery/GalleryPreviewModal.tsx",
+    "frontend/src/components/generate/GenerationRunner.tsx",
+    "frontend/src/components/generate/StoryboardPreview.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useVideoJobs.ts",
+    "frontend/src/utils/share.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

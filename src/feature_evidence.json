@@ -1,0 +1,48 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-replace-the-storyboard-preview-step-s-mock-job-id-creation-with-a-real-backend-job-creation-call-so-that-clicking-start-generation-creates-a-persisted-job-and-navigates-to-the-generation-step-using-the-returned-jobid",
+      "featureTitle": "Replace the Storyboard Preview step’s mock job ID creation with a real backend job creation call so that clicking “Start Generation” creates a persisted job and navigates to the generation step using the returned jobId.",
+      "files": [
+        "frontend/src/components/generate/StoryboardPreview.tsx",
+        "frontend/src/hooks/useVideoJobs.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-generationrunner-to-render-progress-status-result-using-the-backend-job-record-polling-via-react-query-rather-than-only-local-simulated-state-so-the-ui-reflects-the-persisted-job-lifecycle",
+      "featureTitle": "Update GenerationRunner to render progress/status/result using the backend job record (polling via React Query) rather than only local simulated state, so the UI reflects the persisted job lifecycle.",
+      "files": [
+        "frontend/src/components/generate/GenerationRunner.tsx",
+        "frontend/src/hooks/useVideoJobs.ts",
+        "frontend/src/utils/share.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

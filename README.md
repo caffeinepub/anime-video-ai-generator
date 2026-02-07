@@ -1,2 +1,3 @@
-# anime-video-ai-generator
-Exported from Caffeine project: Anime Video AI Generator
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
